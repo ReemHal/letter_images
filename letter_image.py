@@ -8,6 +8,7 @@ from skimage import measure
 from skimage.io import imread, imsave
 from skimage.color import gray2rgb, rgb2gray
 from skimage.filters import gaussian
+from difflib import SequenceMatcher
 
 import nltk
 import scipy.ndimage as ndimage
@@ -22,16 +23,17 @@ letter_parts=['heading', 'sender', 'date', 'recipient', 'subject', 'greeting', '
 
 letter_part_info={'greeting':
                     {'part_type': 'firstOrExact',
-                     'part_options': ['dear', 'to whom it may concern']},
+                     'part_options': ['dear', 'to whom it may concern', 'sir', 'madam']},
                   'signature':
                     {'part_type': 'firstOrExact',
-                     'part_options':['sincerely', 'regards', 'thank you', 'respectfully', 'yours']},
+                     'part_options':['sincerely', 'regards', 'thank you', 'respectfully', 'yours', 'best regards',\
+                     'we thank you for your attention to this matter', 'very truly yours']},
                   'date':
                     {'part_type': 'parse',
                      'part_options': []},
                   'subject':
                     {'part_type': 'firstWord',
-                     'part_options': ['re', 'response', 'subject']},
+                     'part_options': ['re', 'response', 'subject', 'ref', 'sub']},
                   'enclosures':
                     {'part_type': 'firstWord',
                      'part_options': ['p.s', 'encl', 'enclosure', 'enclosures', 'notes', 'note', \
@@ -86,6 +88,8 @@ class letter_image:
         """
         self.image_name = image_name
         self.letter_img = imread(os.path.join(dataset_dir, image_name))
+        if len(self.letter_img.shape)>2:
+            self.letter_img = self.letter_img[:,:,:3] #remove alpha channel
         # self.clip is a list where each item marks a region in the letter image (a contour),
         # the text within that region, and the letter part label for the region from letter_parts list
         self.clip = []
@@ -118,9 +122,18 @@ class letter_image:
         """
            Display the image of the letter
         """
-        fig, ax=plt.subplots(figsize=(7,7))
-        ax.imshow(self.letter_img)
-
+        fig, ax=plt.subplots(figsize=(15,15))
+        ax.imshow(self.letter_img, cmap='Greys_r')
+        plt.tick_params(
+            which='both',      # both major and minor ticks are affected
+            bottom=False,      # ticks along the bottom edge are off
+            top=False,         # ticks along the top edge are off
+            left=False,
+            right=False,
+            labeltop=False,
+            labelleft=False,
+            labelright=False,
+            labelbottom=False) # labels along the bottom edge are off
         plt.show()
 
     def display_contours(self, display=True, save=False, savedir=''):
@@ -129,7 +142,7 @@ class letter_image:
         """
 
         if (self.clip != []):
-            fig, ax=plt.subplots(figsize=(7,7))
+            fig, ax=plt.subplots(figsize=(15,15))
             ax.imshow(self.letter_img)
             label_list = []
             for n, curr_clip in enumerate(self.clip):
@@ -143,7 +156,7 @@ class letter_image:
                         item = ax.plot(contour[:, 1], contour[:, 0], linewidth=2, color=same_color)
 
             if not([None] == list(set(label_list))):
-                plt.legend()
+                plt.legend(loc='lower right')
             else:
                 print("Error: No parts identified!")
 
@@ -193,8 +206,10 @@ class letter_image:
     def _first_word_check(self, text_words, part):
         firstWord_check = False
         firstWord = text_words[0].strip(string.punctuation)
-        if (firstWord.lower() in letter_part_info[part]['part_options']):
-            firstWord_check = True
+        for curr_word in  letter_part_info[part]['part_options']:
+            # fuzzy string check in case of ocr error
+            if SequenceMatcher(a=firstWord.lower(), b=curr_word).ratio()>0.75:
+                firstWord_check = True
 
         return firstWord_check
 
@@ -202,9 +217,11 @@ class letter_image:
     def _first_or_exact_check_(self, text, text_words, part):
         greeting_or_sig= False
         potential_matches = set(list({text})+list({text_words[0]}))
-        words_in_common = potential_matches.intersection(letter_part_info[part]['part_options'])
-        if (words_in_common !=  set()):
-            greeting_or_sig= True
+        for curr_letter_word in potential_matches:
+            for curr_word in letter_part_info[part]['part_options']:
+                # fuzzy string check in case of ocr error
+                if SequenceMatcher(a=curr_letter_word.lower(), b=curr_word).ratio()>0.75:
+                    greeting_or_sig= True
         return greeting_or_sig
 
     # Is the current part being inspected between the greeting and signature?
@@ -354,6 +371,8 @@ class letter_image:
                * contours: list of contours in letter image.
         """
 
+        from skimage.draw import polygon_perimeter
+
         clip=[]
         mask=[]
         n=0
@@ -379,7 +398,14 @@ class letter_image:
                 curr_clip_img = self.letter_img.copy()
                 curr_clip_img = curr_clip_img[topx:bottomx+1, topy:bottomy+1]"""
 
-
+                min_X = np.min(contour[:, 0])
+                max_X = np.max(contour[:, 0])
+                min_Y = np.min(contour[:, 1])
+                max_Y = np.max(contour[:, 1])
+                r = [min_X, max_X, max_X, min_X, min_X ]
+                c = [max_Y, max_Y, min_Y, min_Y, max_Y]
+                rr, cc = polygon_perimeter(r, c, curr_clip_img.shape)
+                curr_clip_img[rr, cc] = 1
 
                 # Find the text content in the current clip
                 text = pytesseract.image_to_string(curr_clip_img) #.astype(np.uint8))
