@@ -26,21 +26,22 @@ For example, given the letter image
 
 ![sample letter](https://media.gcflearnfree.org/content/596f931e8444e81d1ca6cdfd_07_19_2017/businessletter_image2d.jpg)
 
+
 we can identify the different letter parts such as the sender, date, recipient, and letter body. These parts can then be displayed in an image using the letter_image.display_contours() function:
 
 ![letter content](https://github.com/ReemHal/letter_images/blob/master/contours_letter_100.png)
 
-The text content in each part can also be retrieved. Currently, __letter_image__ uses the [Tesseract OCR tool](https://pypi.org/project/pytesseract/) to extract text content. With additional manipulation on the text and layout information, we can extract more data from the letter such as the name of the signator, the name of the sender and recipient and the purpose of the letter.
+The text content in each part can also be retrieved. Currently, __letter_image__ uses the [Tesseract OCR tool](https://pypi.org/project/pytesseract/) to extract text content. With additional manipulation on the text and layout information, we can extract more data from the letter such as the name of the signator, the names of the sender and recipient and the purpose of the letter.
 
 You can find more details in the __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__ notebook.
 
 <a name="collection"><a/>
 ### Extract and Query information from a collection of letter images
 
-We can also extract information from each image in a collection of letter images and save it in a csv file. Extracted information include: the location of each part in a letter, the part type (e.g. sender, signature, body, etc.), the text within that part, as well as the image name and full path. this information allows us to query our database for a veriety of purposes. Examples include:
+We can also extract information from each image in a collection of letter images and save it in a csv file. Extracted information include: the location of each part in a letter, the part type (e.g. sender, signature, body, etc.), the text within that part, as well as the image name and full path. This information allows us to query our database for a veriety of purposes. Examples include:
   - retrieving all the letters that were signed by a given name
-  - getting letters written on the same day
-  - finding letters discussing similar topics.
+  - retrieving letters that were written on the same day
+  - finding letters which discuss similar topics.
   - finding letters with a similar layout.
   
 We can also query the database against a sample letter not in our collection. For example, we can retrieve letters in our collection that were sent to the same person as the sample letter, or letters that were signed by the same signator, or even to find letters with a similar layout as the sample letter.
@@ -70,10 +71,10 @@ This project was developed using:
 <a name="proj"><a/>
 ## Project Status
 
-The project is a work in progress. I would like to:
-  - Use fuzzy matching in identifying dates. I am currently using the dateutil package to identify dates. This causes dates to be missed if any characters were miss-recognized in the date (e.g. 201a instead of 2018).
+This project is a work in progress. I would like to:
+  - Use fuzzy matching ti identify dates. I am currently using the dateutil package to identify dates. This causes dates to be missed if any characters were miss-recognized in the date (e.g. 201a instead of 2018). Fuzzy matching proved useful elsewhere in the code when finding greeting and signature segments.
   - Seperate headings and sender information: as I show in the example notebooks, we can identify names within any given part. This should allow us to better locate the end of a heading and beginning of the sender information.
   - use embeddings and other NLP techniques for the body.
-  - use hough transforms to identify text lines in addition to contours: this handles cases where two different contours fall on the same line and end up being incorrectly detected as two as two different letter parts.
+  - use hough transforms to identify text lines in addition to contours: this handles cases where two different contours fall on the same line and end up being incorrectly detected as two different letter parts.
   
   
