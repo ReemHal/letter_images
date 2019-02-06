@@ -26,7 +26,7 @@ For example, given the letter image
 
 ![sample letter](https://media.gcflearnfree.org/content/596f931e8444e81d1ca6cdfd_07_19_2017/businessletter_image2d.jpg)
 
-we can identify the different letter parts such as the sender, date, recipient, and letter body. These parts can then be displayed in an image:
+we can identify the different letter parts such as the sender, date, recipient, and letter body. These parts can then be displayed in an image using the letter_image.display_contours() function:
 
 ![letter content](https://github.com/ReemHal/letter_images/blob/master/contours_letter_100.png)
 
