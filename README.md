@@ -1,5 +1,5 @@
 # Letter Images
-Letters are sometimes saved as images. This repo extracts information from the image of a business letter such as: sender, recipient, date, signator, enclosures, and letter body. It also extracts and saves layout and content information of all images in a given dataset. The saved information can then be retrieved into a Pandas dataframe for further search on the contents of those letters.
+Professional letters are sometimes saved as images. This repo extracts information from the image of a business letter such as: sender, recipient, date, signator, enclosures, and letter body. It also extracts and saves layout and content information of all images in a given dataset. The saved information can then be retrieved into a Pandas dataframe for further search on the contents of those letters.
 
 Examples of how we can use the repo are given in the two iPython notebooks: __[explore_letter_image_dataset.ipynb](https://github.com/ReemHal/letter_images/blob/master/explore_letter_image_dataset.ipynb)__ and __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__.
 
