@@ -3,7 +3,7 @@ Letters are sometimes saved as images. This repo extracts information from the i
 
 Examples of how we can use the repo are given in the two iPython notebooks: __[explore_letter_image_dataset.ipynb](https://github.com/ReemHal/letter_images/blob/master/explore_letter_image_dataset.ipynb)__ and __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__.
 
-## How to use the repo:
+## How to use the repo
 
 ### Extract information from a single letter image
 
