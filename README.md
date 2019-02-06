@@ -18,7 +18,7 @@ Examples of how we can use the repo are given in the two iPython notebooks: __[e
 <a name="extract"><a/>
 ### Extract information from a single letter image
 
-The __letter_image__ class in the __[letter_image.py](https://github.com/ReemHal/letter_images/blob/master/letter_image.py)__ script is the main class that handles images of letters. Functions in this class identify blocks of text in the image, extract text within each block, identify different parts of the letter as sender/header, recipient, date, subject, letter boday, signature, and notes/enclosures. There are also functions to display the position of each part in the letter, display the letter image, and display the text within each identified part of the letter.
+The __letter_image__ class in the __[letter_image.py](https://github.com/ReemHal/letter_images/blob/master/letter_image.py)__ script is the main class that handles images of letters. Functions in this class identify blocks of text in the image, extract text within each block, identify different parts of the letter as sender/header, recipient, date, subject, letter body, signature, and notes/enclosures. There are also functions to display the position of each part in the letter, display the letter image, and display the text within each identified part.
 
 #### Example
 
@@ -30,7 +30,7 @@ we can identify the different letter parts such as the sender, date, recipient, 
 
 ![letter content](https://github.com/ReemHal/letter_images/blob/master/contours_letter_100.png)
 
-The text content in each part can also be retrieved. Currently, the code uses the [Tesseract OCR tool](https://pypi.org/project/pytesseract/) to extract text content. With additional manipulation on the text and layout information, we can extract more data from the letter such as the name of the signator, the name of the sender and recipient and the purpose of the letter.
+The text content in each part can also be retrieved. Currently, __letter_image__ uses the [Tesseract OCR tool](https://pypi.org/project/pytesseract/) to extract text content. With additional manipulation on the text and layout information, we can extract more data from the letter such as the name of the signator, the name of the sender and recipient and the purpose of the letter.
 
 You can find more details in the __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__ notebook.
 
