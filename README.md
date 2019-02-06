@@ -3,8 +3,19 @@ Professional letters are sometimes saved as images. This repo extracts informati
 
 Examples of how we can use the repo are given in the two iPython notebooks: __[explore_letter_image_dataset.ipynb](https://github.com/ReemHal/letter_images/blob/master/explore_letter_image_dataset.ipynb)__ and __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__.
 
-## Usage Examples
+## Table of Contents
 
+  - [Usage Examples](#Usage)
+    - [Extract information from a single letter image](#extract)
+    - [Extract and Query information from a collection of letter images](#collection)
+  - [Technologies](#tech)
+  - [Project Status](#proj)
+
+  
+<a name="Usage"/>
+##  Usage Examples
+
+<a name="Extract"/>
 ### Extract information from a single letter image
 
 The __letter_image__ class in the __[letter_image.py]https://github.com/ReemHal/letter_images/blob/master/letter_image.py__ script is the main class that handles images of letters. Functions in this class identify blocks of text in the image, extract text within each block, identify different parts of the letter as sender/header, recipient, date, subject, letter boday, signature, and notes/enclosures. There are also functions to display the position of each part in the letter, display the letter image, and display the text within each identified part of the letter.
@@ -23,6 +34,7 @@ The text content in each part can also be retrieved. Currently, the code uses th
 
 You can find more details in the __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__ notebook.
 
+<a name="collection"/>
 ### Extract and Query information from a collection of letter images
 
 We can also extract information from each image in a collection of letter images and save it in a csv file. Extracted information include: the location of each part in a letter, the part type (e.g. sender, signature, body, etc.), the text within that part, as well as the image name and full path. this information allows us to query our database for a veriety of purposes. Examples include:
@@ -35,6 +47,7 @@ We can also query the database against a sample letter not in our collection. Fo
 
 More detailed examples can be found in the __[explore_letter_image_dataset.ipynb](https://github.com/ReemHal/letter_images/blob/master/explore_letter_image_dataset.ipynb)__
 
+<a name="tech"/>
 ## Technologies
 
 This project was developed using:
@@ -54,6 +67,7 @@ This project was developed using:
   - scipy==1.1.0
   - astor==0.7.1
 
+<a name="proj"/>
 ## Project Status
 
 The project is a work in progress. I would like to:
