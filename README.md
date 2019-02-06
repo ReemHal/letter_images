@@ -38,7 +38,7 @@ You can find more details in the __[letter_image_examples.ipynb](https://github.
 <a name="collection"><a/>
 ### Extract and Query information from a collection of letter images
 
-We can also extract information from each image in a collection of letter images and save it in a csv file. Extracted information include: the location of each part in a letter, the part type (e.g. sender, signature, body, etc.), the text within that part, as well as the image name and full path. This information allows us to query our database for a veriety of purposes. Examples include:
+We can also extract information from each image in a collection of letter images and save it in a csv file. Extracted information include: the location of each part in a letter, the part type (e.g. sender, signature, body, etc.), the text within that part, as well as the image name and full path. This information allows us to query our database for a variety of purposes. Examples include:
   - retrieving all the letters that were signed by a given name
   - retrieving letters that were written on the same day
   - finding letters which discuss similar topics.
