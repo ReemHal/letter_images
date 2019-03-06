@@ -31,9 +31,9 @@ we can identify the different letter parts such as the sender, date, recipient, 
 
 ![letter content](https://github.com/ReemHal/letter_images/blob/master/contours_letter_100.png)
 
-The text content in each part can also be retrieved. Currently, __letter_image__ uses the [Tesseract OCR tool](https://pypi.org/project/pytesseract/) to extract text content. With additional manipulation on the text and layout information, we can extract more data from the letter such as the name of the signator, the names of the sender and recipient and the purpose of the letter.
+The text content in each part can also be retrieved. Currently, __letter_image__ uses the [Tesseract OCR tool](https://pypi.org/project/pytesseract/) to extract text content. With additional manipulation on the text and layout information, we can extract more data from the letter such as the name of the signator, the names of the sender and recipient and the purpose of the letter. We can also summarize the letter content using tools like gensim or using word or sentence embeddings. 
 
-You can find more details in the __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__ notebook.
+You can find more details and examples of how these functions can be accomplished in the __[letter_image_examples.ipynb](https://github.com/ReemHal/letter_images/blob/master/letter_image_examples.ipynb)__ notebook.
 
 <a name="collection"><a/>
 ### Extract and Query information from a collection of letter images
