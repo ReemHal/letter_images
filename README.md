@@ -74,7 +74,6 @@ This project was developed using:
 This project is a work in progress. I would like to:
   - Use fuzzy matching ti identify dates. I am currently using the dateutil package to identify dates. This causes dates to be missed if any characters were miss-recognized in the date (e.g. 201a instead of 2018). Fuzzy matching proved useful elsewhere in the code when finding greeting and signature segments.
   - Seperate headings and sender information: as I show in the example notebooks, we can identify names within any given part. This should allow us to better locate the end of a heading and beginning of the sender information.
-  - use embeddings and other NLP techniques for the body.
   - use hough transforms to identify text lines in addition to contours: this handles cases where two different contours fall on the same line and end up being incorrectly detected as two different letter parts.
   
   
