@@ -23,11 +23,11 @@ letter_parts=['heading', 'sender', 'date', 'recipient', 'subject', 'greeting', '
 
 letter_part_info={'greeting':
                     {'part_type': 'firstOrExact',
-                     'part_options': ['dear', 'to whom it may concern', 'sir', 'madam']},
+                     'part_options': ['dear', 'to whom it may concern', 'sir', 'madam', 'hi']},
                   'signature':
                     {'part_type': 'firstOrExact',
                      'part_options':['sincerely', 'regards', 'thank you', 'respectfully', 'yours', 'best regards',\
-                     'we thank you for your attention to this matter', 'very truly yours']},
+                     'we thank you for your attention to this matter', 'very truly yours', 'sincerely yours']},
                   'date':
                     {'part_type': 'parse',
                      'part_options': []},
@@ -44,7 +44,7 @@ letter_part_rules={'heading':
                          'before':['date','greeting','recipient', 'sender',\
                                    'subject','body','signature', 'enclosures']},
                    'recipient':
-                       {'after':['heading','sender', 'date'],
+                       {'after':['heading','sender', 'date', 'subject'],
                         'before':['greeting','recipient',\
                                   'body','signature', 'enclosures']},
                    'body':
