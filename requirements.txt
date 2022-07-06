@@ -14,7 +14,7 @@ enum34==1.1.6
 gast==0.2.0
 grpcio==1.14.2
 h5py==2.8.0
-html5lib==0.9999999
+html5lib==0.999999999
 idna==2.7
 importlib-metadata==0.5
 imutils==0.5.1
